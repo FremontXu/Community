@@ -3,7 +3,6 @@ package com.nowcoder.community.controller;
 import com.nowcoder.community.entity.DiscussPost;
 import com.nowcoder.community.entity.Page;
 import com.nowcoder.community.entity.User;
-
 import com.nowcoder.community.service.DiscussPostService;
 import com.nowcoder.community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +44,6 @@ public class HomeController {
             }
         }
         model.addAttribute("discussPosts", discussPosts);
-
-        System.out.println(page.getPath());
-
         return "/index";
     }
 

@@ -11,14 +11,6 @@ import org.springframework.stereotype.Component;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
-/**
- * ClassName: MailClient <br/>
- * Description: <br/>
- * date: 2022/2/28 9:41<br/>
- *
- * @author thxx<br />
- * @since JDK 1.8
- */
 @Component
 public class MailClient {
 
@@ -40,9 +32,8 @@ public class MailClient {
             helper.setText(content, true);
             mailSender.send(helper.getMimeMessage());
         } catch (MessagingException e) {
-            logger.error("发送失败：" + e.getMessage());
+            logger.error("发送邮件失败:" + e.getMessage());
         }
     }
-
 
 }
