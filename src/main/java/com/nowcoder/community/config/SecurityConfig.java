@@ -1,14 +1,5 @@
 package com.nowcoder.community.config;
 
-/**
- * ClassName: SecurityConfig <br/>
- * Description: <br/>
- * date: 2022/3/9 16:50<br/>
- *
- * @author thxx<br />
- * @since JDK 1.8
- */
-
 import com.nowcoder.community.util.CommunityConstant;
 import com.nowcoder.community.util.CommunityUtil;
 import org.springframework.context.annotation.Configuration;
@@ -54,6 +45,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements Comm
                         AUTHORITY_ADMIN,
                         AUTHORITY_MODERATOR
                 )
+                .antMatchers(
+                        "/discuss/top",
+                        "/discuss/wonderful"
+                )
+                .hasAnyAuthority(
+                        AUTHORITY_MODERATOR
+                )
+                .antMatchers(
+                        "/discuss/delete",
+                        "/data/**"
+                )
+                .hasAnyAuthority(
+                        AUTHORITY_ADMIN
+                )
                 .anyRequest().permitAll()
                 .and().csrf().disable();
 
@@ -72,7 +77,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements Comm
                             response.sendRedirect(request.getContextPath() + "/login");
                         }
                     }
-
                 })
                 .accessDeniedHandler(new AccessDeniedHandler() {
                     // 权限不足
